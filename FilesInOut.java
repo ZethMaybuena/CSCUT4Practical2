@@ -20,6 +20,24 @@ public class FilesInOut {
         // Enter Output file
         System.out.println("Enter output file name:");
         String outputFileName = in.nextLine();
-
+        
+        PrintWriter writer = new PrintWriter(outputFileName)
+        Scanner scanner = new Scanner(new File(inputFileName)
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] words = line.split(" ");
+            // format name
+            StringBuilder formattedName = new StringBuilder();
+            for (int i = 0; i < words.length; i++) {
+                String word = words[i];
+                String formattedWord = Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase().replaceAll("\\d", "");
+                formattedName.append(i == 0 ? formattedWord : " " + formattedWord);
+            }
+            // format date
+            String dateString = line.substring(line.lastIndexOf(" ") + 1);
+            String formattedDate = dateString.substring(0, 2) + "/" + dateString.substring(2, 4) + "/" + dateString.substring(4);
+            // write formatted output to file
+            writer.println(formattedName + " " + formattedDate);
+       
     }
 } // FilesInOut
